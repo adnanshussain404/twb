@@ -1,5 +1,5 @@
-import '/components/intro_page_content_widget.dart';
-import '/components/twb_text_logo_widget.dart';
+import '/components/intro_page_content/intro_page_content_widget.dart';
+import '/components/twb_text_logo/twb_text_logo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';

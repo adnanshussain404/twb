@@ -55,6 +55,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'AppSettings',
+          path: '/appSettings',
+          builder: (context, params) => AppSettingsWidget(),
+        ),
+        FFRoute(
+          name: 'Settings1Notifications',
+          path: '/settings1Notifications',
+          builder: (context, params) => Settings1NotificationsWidget(),
+        ),
+        FFRoute(
+          name: 'Profile06',
+          path: '/profile06',
+          builder: (context, params) => Profile06Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
