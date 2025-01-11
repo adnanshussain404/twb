@@ -47,18 +47,20 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              wrapWithModel(
-                model: _model.twbTextLogoModel,
-                updateCallback: () => safeSetState(() {}),
-                child: TwbTextLogoWidget(),
-              ),
-            ],
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                wrapWithModel(
+                  model: _model.twbTextLogoModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: TwbTextLogoWidget(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
