@@ -1,3 +1,4 @@
+import '/components/intro_page_content_pg01/intro_page_content_pg01_widget.dart';
 import '/components/twb_text_logo/twb_text_logo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,14 +14,46 @@ class AppSettingsModel extends FlutterFlowModel<AppSettingsWidget> {
 
   // Model for twbTextLogo component.
   late TwbTextLogoModel twbTextLogoModel;
+  // Model for IntroPageContentPg01 component.
+  late IntroPageContentPg01Model introPageContentPg01Model;
 
+  final Map<String, DebugDataField> debugGeneratorVariables = {};
+  final Map<String, DebugDataField> debugBackendQueries = {};
+  final Map<String, FlutterFlowModel> widgetBuilderComponents = {};
   @override
   void initState(BuildContext context) {
     twbTextLogoModel = createModel(context, () => TwbTextLogoModel());
+    introPageContentPg01Model =
+        createModel(context, () => IntroPageContentPg01Model());
+
+    debugLogWidgetClass(this);
   }
 
   @override
   void dispose() {
     twbTextLogoModel.dispose();
+    introPageContentPg01Model.dispose();
   }
+
+  @override
+  WidgetClassDebugData toWidgetClassDebugData() => WidgetClassDebugData(
+        generatorVariables: debugGeneratorVariables,
+        backendQueries: debugBackendQueries,
+        componentStates: {
+          'twbTextLogoModel (twbTextLogo)':
+              twbTextLogoModel?.toWidgetClassDebugData(),
+          'introPageContentPg01Model (IntroPageContentPg01)':
+              introPageContentPg01Model?.toWidgetClassDebugData(),
+          ...widgetBuilderComponents.map(
+            (key, value) => MapEntry(
+              key,
+              value.toWidgetClassDebugData(),
+            ),
+          ),
+        }.withoutNulls,
+        link:
+            'https://app.flutterflow.io/project/the-wise-book-kuidt5/tab=uiBuilder&page=AppSettings',
+        searchReference: 'reference=OgtBcHBTZXR0aW5nc1ABWgtBcHBTZXR0aW5ncw==',
+        widgetClassName: 'AppSettings',
+      );
 }

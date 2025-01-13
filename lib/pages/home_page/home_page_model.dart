@@ -18,15 +18,63 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for DropDown widget.
-  String? dropDownValue;
+  String? _dropDownValue;
+  set dropDownValue(String? value) {
+    _dropDownValue = value;
+    debugLogWidgetClass(this);
+  }
+
+  String? get dropDownValue => _dropDownValue;
+
   FormFieldController<String>? dropDownValueController;
 
+  final Map<String, DebugDataField> debugGeneratorVariables = {};
+  final Map<String, DebugDataField> debugBackendQueries = {};
+  final Map<String, FlutterFlowModel> widgetBuilderComponents = {};
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    debugLogWidgetClass(this);
+  }
 
   @override
   void dispose() {
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }
+
+  @override
+  WidgetClassDebugData toWidgetClassDebugData() => WidgetClassDebugData(
+        widgetStates: {
+          'textFieldText': debugSerializeParam(
+            textController?.text,
+            ParamType.String,
+            link:
+                'https://app.flutterflow.io/project/the-wise-book-kuidt5?tab=uiBuilder&page=HomePage',
+            name: 'String',
+            nullable: true,
+          ),
+          'dropDownValue': debugSerializeParam(
+            dropDownValue,
+            ParamType.String,
+            link:
+                'https://app.flutterflow.io/project/the-wise-book-kuidt5?tab=uiBuilder&page=HomePage',
+            name: 'String',
+            nullable: true,
+          )
+        },
+        generatorVariables: debugGeneratorVariables,
+        backendQueries: debugBackendQueries,
+        componentStates: {
+          ...widgetBuilderComponents.map(
+            (key, value) => MapEntry(
+              key,
+              value.toWidgetClassDebugData(),
+            ),
+          ),
+        }.withoutNulls,
+        link:
+            'https://app.flutterflow.io/project/the-wise-book-kuidt5/tab=uiBuilder&page=HomePage',
+        searchReference: 'reference=OghIb21lUGFnZVABWghIb21lUGFnZQ==',
+        widgetClassName: 'HomePage',
+      );
 }

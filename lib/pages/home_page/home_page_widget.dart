@@ -29,7 +29,7 @@ class HomePageWidget extends StatefulWidget {
   State<HomePageWidget> createState() => _HomePageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _HomePageWidgetState extends State<HomePageWidget> with RouteAware {
   late HomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -40,10 +40,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     _model = createModel(context, () => HomePageModel());
 
     _model.textController ??=
-        TextEditingController(text: 'Type here to search anything..');
+        TextEditingController(text: 'Type here to search anything..')
+          ..addListener(() {
+            debugLogWidgetClass(_model);
+          });
     _model.textFieldFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -54,7 +55,47 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = DebugModalRoute.of(context);
+    if (route != null) {
+      routeObserver.subscribe(this, route);
+    }
+    debugLogGlobalProperty(context);
+  }
+
+  @override
+  void didPopNext() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPush() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPop() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
+  void didPushNext() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    DebugFlutterFlowModelContext.maybeOf(context)
+        ?.parentModelCallback
+        ?.call(_model);
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -209,9 +250,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               padding: EdgeInsets.all(5.0),
               child: FFButtonWidget(
                 onPressed: () async {
-                  context.pushNamed('IntroPage01');
+                  context.pushNamed('IntroPage');
                 },
-                text: 'Button',
+                text: 'Intro',
                 options: FFButtonOptions(
                   height: 40.0,
                   padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),

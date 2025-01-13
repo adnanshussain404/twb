@@ -1,21 +1,25 @@
+import '/components/content_block_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'c1_model.dart';
-export 'c1_model.dart';
+import 'intro_page_content_pg01_model.dart';
+export 'intro_page_content_pg01_model.dart';
 
-class C1Widget extends StatefulWidget {
-  const C1Widget({super.key});
+class IntroPageContentPg01Widget extends StatefulWidget {
+  /// Shows the content on the intro pages
+  ///
+  const IntroPageContentPg01Widget({super.key});
 
   @override
-  State<C1Widget> createState() => _C1WidgetState();
+  State<IntroPageContentPg01Widget> createState() =>
+      _IntroPageContentPg01WidgetState();
 }
 
-class _C1WidgetState extends State<C1Widget> with RouteAware {
-  late C1Model _model;
+class _IntroPageContentPg01WidgetState extends State<IntroPageContentPg01Widget>
+    with RouteAware {
+  late IntroPageContentPg01Model _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +30,7 @@ class _C1WidgetState extends State<C1Widget> with RouteAware {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => C1Model());
+    _model = createModel(context, () => IntroPageContentPg01Model());
   }
 
   @override
@@ -78,30 +82,15 @@ class _C1WidgetState extends State<C1Widget> with RouteAware {
         ?.parentModelCallback
         ?.call(_model);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.circular(0.0),
-      ),
-      child: FFButtonWidget(
-        onPressed: () {
-          print('Button pressed ...');
-        },
-        text: 'Button',
-        options: FFButtonOptions(
-          height: 40.0,
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-          iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-          color: FlutterFlowTheme.of(context).primary,
-          textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                fontFamily: 'Merriweather',
-                color: Colors.white,
-                letterSpacing: 0.0,
-              ),
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(0.0),
-        ),
-      ),
+    return wrapWithModel(
+      model: _model.contentBlockModel,
+      updateCallback: () => safeSetState(() {}),
+      child: Builder(builder: (_) {
+        return DebugFlutterFlowModelContext(
+          rootModel: _model.rootModel,
+          child: ContentBlockWidget(),
+        );
+      }),
     );
   }
 }
