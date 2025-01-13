@@ -7,6 +7,8 @@ import '../../flutter_flow/lat_lng.dart';
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
 
+import 'package:debug_panel_proto/debug_panel_proto.dart';
+
 /// SERIALIZATION HELPERS
 
 String dateTimeRangeToString(DateTimeRange dateTimeRange) {
@@ -80,6 +82,95 @@ String? serializeParam(
   }
 }
 
+DebugDataField debugSerializeParam(
+  dynamic param,
+  ParamType paramType, {
+  bool isList = false,
+  String? link,
+  String? searchReference,
+  String? name,
+  bool? nullable,
+}) {
+  try {
+    if (isList) {
+      final values = (param as Iterable?)
+          ?.map((p) => debugSerializeParam(
+                p,
+                paramType,
+                isList: false,
+              ))
+          .toList();
+      return DebugDataField(
+        type: _kParamTypeProtoMap[paramType],
+        listValue: ListDebugDataField(values: values),
+        link: link,
+        searchReference: searchReference,
+        name: name,
+        nullable: nullable,
+      );
+    }
+    String? data;
+    var type = _kParamTypeProtoMap[paramType];
+    if (param != null) {
+      switch (paramType) {
+        case ParamType.int:
+          data = param.toString();
+        case ParamType.double:
+          data = param.toString();
+        case ParamType.String:
+          data = param;
+        case ParamType.bool:
+          data = param ? 'true' : 'false';
+        case ParamType.DateTime:
+          data = (param as DateTime).millisecondsSinceEpoch.toString();
+        case ParamType.DateTimeRange:
+          data = dateTimeRangeToString(param as DateTimeRange);
+        case ParamType.LatLng:
+          data = (param as LatLng).serialize();
+        case ParamType.Color:
+          data = (param as Color).toCssString();
+        case ParamType.FFPlace:
+          data = placeToString(param as FFPlace);
+        case ParamType.FFUploadedFile:
+          data = uploadedFileToString(param as FFUploadedFile);
+        case ParamType.JSON:
+          data = json.encode(param);
+
+        case ParamType.Action:
+        case ParamType.Widget:
+          data = param.runtimeType.toString();
+        case ParamType.ApiResponse:
+          return DebugDataField(
+            type: DebugDataField_ParamType.DATA_STRUCT,
+            mapValue: MapDebugDataField(
+              values: {
+                'statusCode':
+                    debugSerializeParam(param.statusCode, ParamType.int),
+                'body': debugSerializeParam(param.bodyText, ParamType.String),
+              },
+            ),
+            link: link,
+            name: name,
+            nullable: nullable,
+          );
+        default:
+          data = null;
+      }
+    }
+    return DebugDataField(
+      serializedValue: data,
+      type: type,
+      link: link,
+      searchReference: searchReference,
+      name: name,
+      nullable: nullable,
+    );
+  } catch (e) {
+    print('Error debug serializing parameter: $e');
+    return DebugDataField();
+  }
+}
+
 /// END SERIALIZATION HELPERS
 
 /// DESERIALIZATION HELPERS
@@ -145,7 +236,26 @@ enum ParamType {
   FFPlace,
   FFUploadedFile,
   JSON,
+  Action,
+  Widget,
+  ApiResponse,
 }
+
+const _kParamTypeProtoMap = {
+  ParamType.int: DebugDataField_ParamType.INT,
+  ParamType.double: DebugDataField_ParamType.DOUBLE,
+  ParamType.String: DebugDataField_ParamType.STRING,
+  ParamType.bool: DebugDataField_ParamType.BOOL,
+  ParamType.DateTime: DebugDataField_ParamType.DATE_TIME,
+  ParamType.DateTimeRange: DebugDataField_ParamType.DATE_TIME_RANGE,
+  ParamType.LatLng: DebugDataField_ParamType.LAT_LNG,
+  ParamType.Color: DebugDataField_ParamType.COLOR,
+  ParamType.FFPlace: DebugDataField_ParamType.FF_PLACE,
+  ParamType.FFUploadedFile: DebugDataField_ParamType.FF_UPLOADED_FILE,
+  ParamType.JSON: DebugDataField_ParamType.JSON,
+  ParamType.Action: DebugDataField_ParamType.ACTION,
+  ParamType.Widget: DebugDataField_ParamType.WIDGET,
+};
 
 dynamic deserializeParam<T>(
   String? param,

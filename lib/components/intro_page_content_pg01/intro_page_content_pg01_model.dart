@@ -13,6 +13,9 @@ class IntroPageContentPg01Model
   // Model for ContentBlock component.
   late ContentBlockModel contentBlockModel;
 
+  final Map<String, DebugDataField> debugGeneratorVariables = {};
+  final Map<String, DebugDataField> debugBackendQueries = {};
+  final Map<String, FlutterFlowModel> widgetBuilderComponents = {};
   @override
   void initState(BuildContext context) {
     contentBlockModel = createModel(context, () => ContentBlockModel());
@@ -22,4 +25,25 @@ class IntroPageContentPg01Model
   void dispose() {
     contentBlockModel.dispose();
   }
+
+  @override
+  WidgetClassDebugData toWidgetClassDebugData() => WidgetClassDebugData(
+        generatorVariables: debugGeneratorVariables,
+        backendQueries: debugBackendQueries,
+        componentStates: {
+          'contentBlockModel (ContentBlock)':
+              contentBlockModel?.toWidgetClassDebugData(),
+          ...widgetBuilderComponents.map(
+            (key, value) => MapEntry(
+              key,
+              value.toWidgetClassDebugData(),
+            ),
+          ),
+        }.withoutNulls,
+        link:
+            'https://app.flutterflow.io/project/the-wise-book-kuidt5/tab=uiBuilder&page=IntroPageContentPg01',
+        searchReference:
+            'reference=OhRJbnRyb1BhZ2VDb250ZW50UGcwMVAAWhRJbnRyb1BhZ2VDb250ZW50UGcwMQ==',
+        widgetClassName: 'IntroPageContentPg01',
+      );
 }

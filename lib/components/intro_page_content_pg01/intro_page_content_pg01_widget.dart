@@ -17,8 +17,8 @@ class IntroPageContentPg01Widget extends StatefulWidget {
       _IntroPageContentPg01WidgetState();
 }
 
-class _IntroPageContentPg01WidgetState
-    extends State<IntroPageContentPg01Widget> {
+class _IntroPageContentPg01WidgetState extends State<IntroPageContentPg01Widget>
+    with RouteAware {
   late IntroPageContentPg01Model _model;
 
   @override
@@ -31,8 +31,6 @@ class _IntroPageContentPg01WidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => IntroPageContentPg01Model());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -43,11 +41,56 @@ class _IntroPageContentPg01WidgetState
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = DebugModalRoute.of(context);
+    if (route != null) {
+      routeObserver.subscribe(this, route);
+    }
+    debugLogGlobalProperty(context);
+  }
+
+  @override
+  void didPopNext() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPush() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPop() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
+  void didPushNext() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    DebugFlutterFlowModelContext.maybeOf(context)
+        ?.parentModelCallback
+        ?.call(_model);
+
     return wrapWithModel(
       model: _model.contentBlockModel,
       updateCallback: () => safeSetState(() {}),
-      child: ContentBlockWidget(),
+      child: Builder(builder: (_) {
+        return DebugFlutterFlowModelContext(
+          rootModel: _model.rootModel,
+          child: ContentBlockWidget(),
+        );
+      }),
     );
   }
 }

@@ -1,4 +1,3 @@
-import '/components/intro_page_content_pg01/intro_page_content_pg01_widget.dart';
 import '/components/twb_text_logo/twb_text_logo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -18,7 +17,7 @@ class AppSettingsWidget extends StatefulWidget {
   State<AppSettingsWidget> createState() => _AppSettingsWidgetState();
 }
 
-class _AppSettingsWidgetState extends State<AppSettingsWidget> {
+class _AppSettingsWidgetState extends State<AppSettingsWidget> with RouteAware {
   late AppSettingsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -27,8 +26,6 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AppSettingsModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -39,7 +36,47 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = DebugModalRoute.of(context);
+    if (route != null) {
+      routeObserver.subscribe(this, route);
+    }
+    debugLogGlobalProperty(context);
+  }
+
+  @override
+  void didPopNext() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPush() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPop() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
+  void didPushNext() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    DebugFlutterFlowModelContext.maybeOf(context)
+        ?.parentModelCallback
+        ?.call(_model);
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -59,18 +96,12 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
                 wrapWithModel(
                   model: _model.twbTextLogoModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TwbTextLogoWidget(),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                    child: wrapWithModel(
-                      model: _model.introPageContentPg01Model,
-                      updateCallback: () => safeSetState(() {}),
-                      child: IntroPageContentPg01Widget(),
-                    ),
-                  ),
+                  child: Builder(builder: (_) {
+                    return DebugFlutterFlowModelContext(
+                      rootModel: _model.rootModel,
+                      child: TwbTextLogoWidget(),
+                    );
+                  }),
                 ),
               ],
             ),

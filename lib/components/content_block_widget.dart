@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -25,7 +24,8 @@ class ContentBlockWidget extends StatefulWidget {
   State<ContentBlockWidget> createState() => _ContentBlockWidgetState();
 }
 
-class _ContentBlockWidgetState extends State<ContentBlockWidget> {
+class _ContentBlockWidgetState extends State<ContentBlockWidget>
+    with RouteAware {
   late ContentBlockModel _model;
 
   @override
@@ -38,8 +38,6 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ContentBlockModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -50,7 +48,47 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = DebugModalRoute.of(context);
+    if (route != null) {
+      routeObserver.subscribe(this, route);
+    }
+    debugLogGlobalProperty(context);
+  }
+
+  @override
+  void didPopNext() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPush() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPop() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
+  void didPushNext() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    DebugFlutterFlowModelContext.maybeOf(context)
+        ?.parentModelCallback
+        ?.call(_model);
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -94,21 +132,12 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Flexible(
+                Expanded(
                   flex: 3,
                   child: MarkdownBody(
                     data: widget!.mdContent,
                     selectable: false,
                     onTapLink: (_, url, __) => launchURL(url!),
-                  ),
-                ),
-                Container(
-                  width: 200.0,
-                  height: 200.0,
-                  child: custom_widgets.QuickTextWidget(
-                    width: 200.0,
-                    height: 200.0,
-                    content: '## Whateva !',
                   ),
                 ),
               ],

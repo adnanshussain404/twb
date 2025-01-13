@@ -18,8 +18,8 @@ class IntroPageContentPg02Widget extends StatefulWidget {
       _IntroPageContentPg02WidgetState();
 }
 
-class _IntroPageContentPg02WidgetState
-    extends State<IntroPageContentPg02Widget> {
+class _IntroPageContentPg02WidgetState extends State<IntroPageContentPg02Widget>
+    with RouteAware {
   late IntroPageContentPg02Model _model;
 
   @override
@@ -32,8 +32,6 @@ class _IntroPageContentPg02WidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => IntroPageContentPg02Model());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -44,7 +42,47 @@ class _IntroPageContentPg02WidgetState
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = DebugModalRoute.of(context);
+    if (route != null) {
+      routeObserver.subscribe(this, route);
+    }
+    debugLogGlobalProperty(context);
+  }
+
+  @override
+  void didPopNext() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPush() {
+    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
+      setState(() => _model.isRouteVisible = true);
+      debugLogWidgetClass(_model);
+    }
+  }
+
+  @override
+  void didPop() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
+  void didPushNext() {
+    _model.isRouteVisible = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    DebugFlutterFlowModelContext.maybeOf(context)
+        ?.parentModelCallback
+        ?.call(_model);
+
     return Container(
       width: double.infinity,
       height: 600.0,

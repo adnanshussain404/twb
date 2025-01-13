@@ -20,6 +20,19 @@ const kTransitionInfoKey = '__transition_info__';
 
 GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
+const debugRouteLinkMap = {
+  '/introPage':
+      'https://app.flutterflow.io/project/the-wise-book-kuidt5?tab=uiBuilder&page=IntroPage',
+  '/homePage':
+      'https://app.flutterflow.io/project/the-wise-book-kuidt5?tab=uiBuilder&page=HomePage',
+  '/appSettings':
+      'https://app.flutterflow.io/project/the-wise-book-kuidt5?tab=uiBuilder&page=AppSettings',
+  '/settings1Notifications':
+      'https://app.flutterflow.io/project/the-wise-book-kuidt5?tab=uiBuilder&page=Settings1Notifications',
+  '/profile06':
+      'https://app.flutterflow.io/project/the-wise-book-kuidt5?tab=uiBuilder&page=Profile06'
+};
+
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
 
@@ -72,6 +85,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => Profile06Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {

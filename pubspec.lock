@@ -154,14 +154,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.0.2"
-  dropdown_button2:
-    dependency: "direct main"
-    description:
-      name: dropdown_button2
-      sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.9"
   dtd:
     dependency: transitive
     description:
@@ -632,14 +624,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
-  quick_text:
-    dependency: "direct main"
-    description:
-      name: quick_text
-      sha256: cc2820c634b9345ff545b8c4ff95a24a3c79fcc991e539ce13844a0a21ba369d
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   recase:
     dependency: transitive
     description:
