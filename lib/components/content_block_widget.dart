@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'content_block_model.dart';
@@ -24,8 +24,7 @@ class ContentBlockWidget extends StatefulWidget {
   State<ContentBlockWidget> createState() => _ContentBlockWidgetState();
 }
 
-class _ContentBlockWidgetState extends State<ContentBlockWidget>
-    with RouteAware {
+class _ContentBlockWidgetState extends State<ContentBlockWidget> {
   late ContentBlockModel _model;
 
   @override
@@ -38,6 +37,8 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => ContentBlockModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -48,48 +49,10 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget>
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final route = DebugModalRoute.of(context);
-    if (route != null) {
-      routeObserver.subscribe(this, route);
-    }
-    debugLogGlobalProperty(context);
-  }
-
-  @override
-  void didPopNext() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPush() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPop() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
-  void didPushNext() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    DebugFlutterFlowModelContext.maybeOf(context)
-        ?.parentModelCallback
-        ?.call(_model);
-
     return Container(
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -107,9 +70,8 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget>
           width: 3.0,
         ),
       ),
-      alignment: AlignmentDirectional(0.0, -1.0),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -127,21 +89,15 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget>
               ),
             ),
           ),
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: MarkdownBody(
-                    data: widget!.mdContent,
-                    selectable: false,
-                    onTapLink: (_, url, __) => launchURL(url!),
-                  ),
-                ),
-              ],
-            ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              custom_widgets.AshMarkdownWidget(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                content: widget!.mdContent,
+              ),
+            ],
           ),
         ],
       ),

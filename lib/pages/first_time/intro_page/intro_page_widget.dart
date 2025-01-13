@@ -22,7 +22,7 @@ class IntroPageWidget extends StatefulWidget {
   State<IntroPageWidget> createState() => _IntroPageWidgetState();
 }
 
-class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
+class _IntroPageWidgetState extends State<IntroPageWidget> {
   late IntroPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -31,6 +31,8 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
   void initState() {
     super.initState();
     _model = createModel(context, () => IntroPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -41,46 +43,7 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final route = DebugModalRoute.of(context);
-    if (route != null) {
-      routeObserver.subscribe(this, route);
-    }
-    debugLogGlobalProperty(context);
-  }
-
-  @override
-  void didPopNext() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPush() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPop() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
-  void didPushNext() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    DebugFlutterFlowModelContext.maybeOf(context)
-        ?.parentModelCallback
-        ?.call(_model);
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -96,105 +59,79 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 wrapWithModel(
                   model: _model.twbTextLogoModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: Builder(builder: (_) {
-                    return DebugFlutterFlowModelContext(
-                      rootModel: _model.rootModel,
-                      child: TwbTextLogoWidget(),
-                    );
-                  }),
+                  child: TwbTextLogoWidget(),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 40.0),
-                            child: PageView(
-                              controller: _model.pageViewController ??=
-                                  PageController(initialPage: 0)
-                                    ..addListener(() {
-                                      debugLogWidgetClass(_model);
-                                    }),
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                wrapWithModel(
-                                  model: _model.contentBlockModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: Builder(builder: (_) {
-                                    return DebugFlutterFlowModelContext(
-                                      rootModel: _model.rootModel,
-                                      child: ContentBlockWidget(
-                                        mdContent: FFAppState().asvIntoPg01Data,
-                                        titleText: 'Why I made this App?',
-                                      ),
-                                    );
-                                  }),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: Container(
+                    height: 300.0,
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 40.0),
+                          child: PageView(
+                            controller: _model.pageViewController ??=
+                                PageController(initialPage: 0),
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              wrapWithModel(
+                                model: _model.contentBlockModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: ContentBlockWidget(
+                                  mdContent: FFAppState().asvIntoPg01Data,
+                                  titleText: 'Why I made this App?',
                                 ),
-                                wrapWithModel(
-                                  model: _model.introPageContentPg02Model,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: Builder(builder: (_) {
-                                    return DebugFlutterFlowModelContext(
-                                      rootModel: _model.rootModel,
-                                      child: IntroPageContentPg02Widget(),
-                                    );
-                                  }),
-                                ),
-                                Container(),
-                              ],
-                            ),
+                              ),
+                              wrapWithModel(
+                                model: _model.introPageContentPg02Model,
+                                updateCallback: () => safeSetState(() {}),
+                                child: IntroPageContentPg02Widget(),
+                              ),
+                              Container(),
+                            ],
                           ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 1.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 16.0),
-                              child: smooth_page_indicator.SmoothPageIndicator(
-                                controller: _model.pageViewController ??=
-                                    PageController(initialPage: 0)
-                                      ..addListener(() {
-                                        debugLogWidgetClass(_model);
-                                      }),
-                                count: 3,
-                                axisDirection: Axis.horizontal,
-                                onDotClicked: (i) async {
-                                  await _model.pageViewController!
-                                      .animateToPage(
-                                    i,
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                  safeSetState(() {});
-                                },
-                                effect:
-                                    smooth_page_indicator.ExpandingDotsEffect(
-                                  expansionFactor: 2.0,
-                                  spacing: 8.0,
-                                  radius: 8.0,
-                                  dotWidth: 8.0,
-                                  dotHeight: 8.0,
-                                  dotColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  activeDotColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  paintStyle: PaintingStyle.fill,
-                                ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 1.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: smooth_page_indicator.SmoothPageIndicator(
+                              controller: _model.pageViewController ??=
+                                  PageController(initialPage: 0),
+                              count: 3,
+                              axisDirection: Axis.horizontal,
+                              onDotClicked: (i) async {
+                                await _model.pageViewController!.animateToPage(
+                                  i,
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.ease,
+                                );
+                                safeSetState(() {});
+                              },
+                              effect: smooth_page_indicator.ExpandingDotsEffect(
+                                expansionFactor: 2.0,
+                                spacing: 8.0,
+                                radius: 8.0,
+                                dotWidth: 8.0,
+                                dotHeight: 8.0,
+                                dotColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                activeDotColor:
+                                    FlutterFlowTheme.of(context).accent1,
+                                paintStyle: PaintingStyle.fill,
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

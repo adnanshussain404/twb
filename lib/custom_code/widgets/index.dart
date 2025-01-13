@@ -1,1 +1,1 @@
-export 'quick_text_widget.dart' show QuickTextWidget;
+export 'ash_markdown_widget.dart' show AshMarkdownWidget;

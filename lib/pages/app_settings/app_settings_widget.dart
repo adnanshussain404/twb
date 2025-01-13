@@ -17,7 +17,7 @@ class AppSettingsWidget extends StatefulWidget {
   State<AppSettingsWidget> createState() => _AppSettingsWidgetState();
 }
 
-class _AppSettingsWidgetState extends State<AppSettingsWidget> with RouteAware {
+class _AppSettingsWidgetState extends State<AppSettingsWidget> {
   late AppSettingsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -26,6 +26,8 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> with RouteAware {
   void initState() {
     super.initState();
     _model = createModel(context, () => AppSettingsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -36,47 +38,7 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final route = DebugModalRoute.of(context);
-    if (route != null) {
-      routeObserver.subscribe(this, route);
-    }
-    debugLogGlobalProperty(context);
-  }
-
-  @override
-  void didPopNext() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPush() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPop() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
-  void didPushNext() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    DebugFlutterFlowModelContext.maybeOf(context)
-        ?.parentModelCallback
-        ?.call(_model);
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -96,12 +58,7 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> with RouteAware {
                 wrapWithModel(
                   model: _model.twbTextLogoModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: Builder(builder: (_) {
-                    return DebugFlutterFlowModelContext(
-                      rootModel: _model.rootModel,
-                      child: TwbTextLogoWidget(),
-                    );
-                  }),
+                  child: TwbTextLogoWidget(),
                 ),
               ],
             ),

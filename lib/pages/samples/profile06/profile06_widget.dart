@@ -17,7 +17,7 @@ class Profile06Widget extends StatefulWidget {
   State<Profile06Widget> createState() => _Profile06WidgetState();
 }
 
-class _Profile06WidgetState extends State<Profile06Widget> with RouteAware {
+class _Profile06WidgetState extends State<Profile06Widget> {
   late Profile06Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -26,6 +26,8 @@ class _Profile06WidgetState extends State<Profile06Widget> with RouteAware {
   void initState() {
     super.initState();
     _model = createModel(context, () => Profile06Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -36,47 +38,7 @@ class _Profile06WidgetState extends State<Profile06Widget> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final route = DebugModalRoute.of(context);
-    if (route != null) {
-      routeObserver.subscribe(this, route);
-    }
-    debugLogGlobalProperty(context);
-  }
-
-  @override
-  void didPopNext() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPush() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPop() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
-  void didPushNext() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    DebugFlutterFlowModelContext.maybeOf(context)
-        ?.parentModelCallback
-        ?.call(_model);
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
