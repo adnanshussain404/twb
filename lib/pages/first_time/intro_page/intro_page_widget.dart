@@ -22,7 +22,7 @@ class IntroPageWidget extends StatefulWidget {
   State<IntroPageWidget> createState() => _IntroPageWidgetState();
 }
 
-class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
+class _IntroPageWidgetState extends State<IntroPageWidget> {
   late IntroPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -31,6 +31,8 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
   void initState() {
     super.initState();
     _model = createModel(context, () => IntroPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -41,47 +43,7 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final route = DebugModalRoute.of(context);
-    if (route != null) {
-      routeObserver.subscribe(this, route);
-    }
-    debugLogGlobalProperty(context);
-  }
-
-  @override
-  void didPopNext() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPush() {
-    if (mounted && DebugFlutterFlowModelContext.maybeOf(context) == null) {
-      setState(() => _model.isRouteVisible = true);
-      debugLogWidgetClass(_model);
-    }
-  }
-
-  @override
-  void didPop() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
-  void didPushNext() {
-    _model.isRouteVisible = false;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    DebugFlutterFlowModelContext.maybeOf(context)
-        ?.parentModelCallback
-        ?.call(_model);
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -101,12 +63,7 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
                 wrapWithModel(
                   model: _model.twbTextLogoModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: Builder(builder: (_) {
-                    return DebugFlutterFlowModelContext(
-                      rootModel: _model.rootModel,
-                      child: TwbTextLogoWidget(),
-                    );
-                  }),
+                  child: TwbTextLogoWidget(),
                 ),
                 Expanded(
                   child: Padding(
@@ -121,34 +78,21 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
                                 0.0, 0.0, 0.0, 40.0),
                             child: PageView(
                               controller: _model.pageViewController ??=
-                                  PageController(initialPage: 0)
-                                    ..addListener(() {
-                                      debugLogWidgetClass(_model);
-                                    }),
+                                  PageController(initialPage: 0),
                               scrollDirection: Axis.horizontal,
                               children: [
                                 wrapWithModel(
                                   model: _model.contentBlockModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: Builder(builder: (_) {
-                                    return DebugFlutterFlowModelContext(
-                                      rootModel: _model.rootModel,
-                                      child: ContentBlockWidget(
-                                        mdContent: '',
-                                        titleText: 'Why I made this App?',
-                                      ),
-                                    );
-                                  }),
+                                  child: ContentBlockWidget(
+                                    mdContent: '',
+                                    titleText: 'Why I made this App?',
+                                  ),
                                 ),
                                 wrapWithModel(
                                   model: _model.introPageContentPg02Model,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: Builder(builder: (_) {
-                                    return DebugFlutterFlowModelContext(
-                                      rootModel: _model.rootModel,
-                                      child: IntroPageContentPg02Widget(),
-                                    );
-                                  }),
+                                  child: IntroPageContentPg02Widget(),
                                 ),
                                 Container(),
                               ],
@@ -161,10 +105,7 @@ class _IntroPageWidgetState extends State<IntroPageWidget> with RouteAware {
                                   0.0, 0.0, 0.0, 16.0),
                               child: smooth_page_indicator.SmoothPageIndicator(
                                 controller: _model.pageViewController ??=
-                                    PageController(initialPage: 0)
-                                      ..addListener(() {
-                                        debugLogWidgetClass(_model);
-                                      }),
+                                    PageController(initialPage: 0),
                                 count: 3,
                                 axisDirection: Axis.horizontal,
                                 onDotClicked: (i) async {

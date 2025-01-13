@@ -632,6 +632,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  quick_text:
+    dependency: "direct main"
+    description:
+      name: quick_text
+      sha256: cc2820c634b9345ff545b8c4ff95a24a3c79fcc991e539ce13844a0a21ba369d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   recase:
     dependency: transitive
     description:
