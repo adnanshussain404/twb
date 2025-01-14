@@ -1,5 +1,5 @@
+import '/components/content_block2_widget.dart';
 import '/components/content_block_widget.dart';
-import '/components/intro_page_content_pg02/intro_page_content_pg02_widget.dart';
 import '/components/twb_text_logo/twb_text_logo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -27,21 +27,20 @@ class IntroPageModel extends FlutterFlowModel<IntroPageWidget> {
       : 0;
   // Model for ContentBlock component.
   late ContentBlockModel contentBlockModel;
-  // Model for IntroPageContentPg02 component.
-  late IntroPageContentPg02Model introPageContentPg02Model;
+  // Model for ContentBlock2 component.
+  late ContentBlock2Model contentBlock2Model;
 
   @override
   void initState(BuildContext context) {
     twbTextLogoModel = createModel(context, () => TwbTextLogoModel());
     contentBlockModel = createModel(context, () => ContentBlockModel());
-    introPageContentPg02Model =
-        createModel(context, () => IntroPageContentPg02Model());
+    contentBlock2Model = createModel(context, () => ContentBlock2Model());
   }
 
   @override
   void dispose() {
     twbTextLogoModel.dispose();
     contentBlockModel.dispose();
-    introPageContentPg02Model.dispose();
+    contentBlock2Model.dispose();
   }
 }

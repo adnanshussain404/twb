@@ -1,5 +1,5 @@
+import '/components/content_block2_widget.dart';
 import '/components/content_block_widget.dart';
-import '/components/intro_page_content_pg02/intro_page_content_pg02_widget.dart';
 import '/components/twb_text_logo/twb_text_logo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -59,7 +59,7 @@ class _IntroPageWidgetState extends State<IntroPageWidget> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 wrapWithModel(
@@ -67,71 +67,79 @@ class _IntroPageWidgetState extends State<IntroPageWidget> {
                   updateCallback: () => safeSetState(() {}),
                   child: TwbTextLogoWidget(),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: Container(
-                    height: 300.0,
-                    child: Stack(
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 40.0),
-                          child: PageView(
-                            controller: _model.pageViewController ??=
-                                PageController(initialPage: 0),
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              wrapWithModel(
-                                model: _model.contentBlockModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: ContentBlockWidget(
-                                  mdContent: FFAppState().asvIntoPg01Data,
-                                  titleText: 'Why I made this App?',
-                                ),
-                              ),
-                              wrapWithModel(
-                                model: _model.introPageContentPg02Model,
-                                updateCallback: () => safeSetState(() {}),
-                                child: IntroPageContentPg02Widget(),
-                              ),
-                              Container(),
-                            ],
-                          ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
-                          child: Padding(
+                Expanded(
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: Container(
+                      height: MediaQuery.sizeOf(context).height * 0.8,
+                      child: Stack(
+                        children: [
+                          Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
-                            child: smooth_page_indicator.SmoothPageIndicator(
+                                0.0, 0.0, 0.0, 40.0),
+                            child: PageView(
                               controller: _model.pageViewController ??=
                                   PageController(initialPage: 0),
-                              count: 3,
-                              axisDirection: Axis.horizontal,
-                              onDotClicked: (i) async {
-                                await _model.pageViewController!.animateToPage(
-                                  i,
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.ease,
-                                );
-                                safeSetState(() {});
-                              },
-                              effect: smooth_page_indicator.ExpandingDotsEffect(
-                                expansionFactor: 2.0,
-                                spacing: 8.0,
-                                radius: 8.0,
-                                dotWidth: 8.0,
-                                dotHeight: 8.0,
-                                dotColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                activeDotColor:
-                                    FlutterFlowTheme.of(context).accent1,
-                                paintStyle: PaintingStyle.fill,
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                wrapWithModel(
+                                  model: _model.contentBlockModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: ContentBlockWidget(
+                                    mdContent: FFAppState().asvIntoPg01Data,
+                                    titleText: 'Why ?',
+                                  ),
+                                ),
+                                wrapWithModel(
+                                  model: _model.contentBlock2Model,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: ContentBlock2Widget(
+                                    mdContent: FFAppState().asvIntoPg01Data,
+                                    titleText: 'Because I Can. ❤️',
+                                  ),
+                                ),
+                                Container(),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(0.0, 1.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 16.0),
+                              child: smooth_page_indicator.SmoothPageIndicator(
+                                controller: _model.pageViewController ??=
+                                    PageController(initialPage: 0),
+                                count: 3,
+                                axisDirection: Axis.horizontal,
+                                onDotClicked: (i) async {
+                                  await _model.pageViewController!
+                                      .animateToPage(
+                                    i,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.ease,
+                                  );
+                                  safeSetState(() {});
+                                },
+                                effect:
+                                    smooth_page_indicator.ExpandingDotsEffect(
+                                  expansionFactor: 2.0,
+                                  spacing: 8.0,
+                                  radius: 8.0,
+                                  dotWidth: 8.0,
+                                  dotHeight: 8.0,
+                                  dotColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  activeDotColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  paintStyle: PaintingStyle.fill,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

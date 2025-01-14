@@ -1,31 +1,30 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'content_block_model.dart';
-export 'content_block_model.dart';
+import 'content_block2_model.dart';
+export 'content_block2_model.dart';
 
-class ContentBlockWidget extends StatefulWidget {
-  const ContentBlockWidget({
+class ContentBlock2Widget extends StatefulWidget {
+  /// A main content block with a customized flutter-markdown widget
+  const ContentBlock2Widget({
     super.key,
     String? mdContent,
-    String? titleText,
-  })  : this.mdContent = mdContent ?? '# No Content Set',
-        this.titleText = titleText ?? 'No Title Set';
+    required this.titleText,
+  }) : this.mdContent = mdContent ?? '# No Content Set';
 
   final String mdContent;
-  final String titleText;
+  final String? titleText;
 
   @override
-  State<ContentBlockWidget> createState() => _ContentBlockWidgetState();
+  State<ContentBlock2Widget> createState() => _ContentBlock2WidgetState();
 }
 
-class _ContentBlockWidgetState extends State<ContentBlockWidget> {
-  late ContentBlockModel _model;
+class _ContentBlock2WidgetState extends State<ContentBlock2Widget> {
+  late ContentBlock2Model _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,7 +35,7 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ContentBlockModel());
+    _model = createModel(context, () => ContentBlock2Model());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -62,7 +61,6 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
           end: AlignmentDirectional(0, 1.0),
         ),
         borderRadius: BorderRadius.circular(12.5),
-        shape: BoxShape.rectangle,
         border: Border.all(
           color: FlutterFlowTheme.of(context).white,
           width: 3.0,
@@ -80,7 +78,10 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                 child: Text(
-                  widget!.titleText,
+                  valueOrDefault<String>(
+                    widget!.titleText,
+                    'No Title Set',
+                  ),
                   style: FlutterFlowTheme.of(context).titleLarge.override(
                         fontFamily: 'Merriweather',
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -89,10 +90,14 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
                 ),
               ),
             ),
-            MarkdownBody(
-              data: widget!.mdContent,
-              selectable: true,
-              onTapLink: (_, url, __) => launchURL(url!),
+            Container(
+              width: double.infinity,
+              height: MediaQuery.sizeOf(context).height * 1.0,
+              child: custom_widgets.AshMarkdownWidget(
+                width: double.infinity,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                content: widget!.mdContent,
+              ),
             ),
           ],
         ),
