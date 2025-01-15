@@ -1,7 +1,11 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'content_block_model.dart';
 export 'content_block_model.dart';
 
@@ -10,8 +14,8 @@ class ContentBlockWidget extends StatefulWidget {
     super.key,
     String? mdContent,
     String? titleText,
-  })  : mdContent = mdContent ?? '# No Content Set',
-        titleText = titleText ?? 'No Title Set';
+  })  : this.mdContent = mdContent ?? '# No Content Set',
+        this.titleText = titleText ?? 'No Title Set';
 
   final String mdContent;
   final String titleText;
@@ -53,9 +57,9 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
             FlutterFlowTheme.of(context).primaryBackground,
             FlutterFlowTheme.of(context).secondaryText
           ],
-          stops: const [0.0, 1.0],
-          begin: const AlignmentDirectional(0.0, -1.0),
-          end: const AlignmentDirectional(0, 1.0),
+          stops: [0.0, 1.0],
+          begin: AlignmentDirectional(0.0, -1.0),
+          end: AlignmentDirectional(0, 1.0),
         ),
         borderRadius: BorderRadius.circular(12.5),
         shape: BoxShape.rectangle,
@@ -72,11 +76,11 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                 child: Text(
-                  widget.titleText,
+                  widget!.titleText,
                   style: FlutterFlowTheme.of(context).titleLarge.override(
                         fontFamily: 'Merriweather',
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -86,7 +90,7 @@ class _ContentBlockWidgetState extends State<ContentBlockWidget> {
               ),
             ),
             MarkdownBody(
-              data: widget.mdContent,
+              data: widget!.mdContent,
               selectable: true,
               onTapLink: (_, url, __) => launchURL(url!),
             ),

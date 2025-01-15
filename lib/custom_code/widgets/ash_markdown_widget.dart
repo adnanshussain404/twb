@@ -1,6 +1,7 @@
 // Automatic FlutterFlow imports
 import '/flutter_flow/flutter_flow_theme.dart';
-// Imports other custom widgets
+import '/flutter_flow/flutter_flow_util.dart';
+import 'index.dart'; // Imports other custom widgets
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -35,12 +36,12 @@ class _AshMarkdownWidgetState extends State<AshMarkdownWidget> {
         listBullet: allTextStyle,
         p: allTextStyle,
         // Customize heading styles if needed
-        h1: const TextStyle(
+        h1: TextStyle(
           color: Colors.brown,
           fontSize: 24,
           fontFamily: 'Roboto',
         ),
-        h2: const TextStyle(
+        h2: TextStyle(
           color: Colors.black,
           fontSize: 20,
           fontFamily: 'Roboto',

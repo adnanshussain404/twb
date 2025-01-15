@@ -1,7 +1,11 @@
 import '/components/twb_text_logo/twb_text_logo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'app_settings_model.dart';
 export 'app_settings_model.dart';
 
@@ -46,7 +50,7 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +58,7 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
                 wrapWithModel(
                   model: _model.twbTextLogoModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TwbTextLogoWidget(),
+                  child: TwbTextLogoWidget(),
                 ),
               ],
             ),

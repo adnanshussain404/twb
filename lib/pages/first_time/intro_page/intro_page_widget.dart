@@ -3,9 +3,12 @@ import '/components/content_block_widget.dart';
 import '/components/twb_text_logo/twb_text_logo_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'intro_page_model.dart';
 export 'intro_page_model.dart';
@@ -54,7 +57,7 @@ class _IntroPageWidgetState extends State<IntroPageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,18 +65,18 @@ class _IntroPageWidgetState extends State<IntroPageWidget> {
                 wrapWithModel(
                   model: _model.twbTextLogoModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TwbTextLogoWidget(),
+                  child: TwbTextLogoWidget(),
                 ),
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                    child: SizedBox(
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: Container(
                       height: MediaQuery.sizeOf(context).height * 0.8,
                       child: Stack(
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 40.0),
                             child: PageView(
                               controller: _model.pageViewController ??=
@@ -101,9 +104,9 @@ class _IntroPageWidgetState extends State<IntroPageWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            alignment: AlignmentDirectional(0.0, 1.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: smooth_page_indicator.SmoothPageIndicator(
                                 controller: _model.pageViewController ??=
@@ -114,7 +117,7 @@ class _IntroPageWidgetState extends State<IntroPageWidget> {
                                   await _model.pageViewController!
                                       .animateToPage(
                                     i,
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     curve: Curves.ease,
                                   );
                                   safeSetState(() {});

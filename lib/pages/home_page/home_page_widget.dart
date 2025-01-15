@@ -1,8 +1,11 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -63,7 +66,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           children: [
             Container(
               height: 100.0,
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -74,7 +77,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       focusNode: _model.textFieldFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.textController',
-                        const Duration(milliseconds: 2000),
+                        Duration(milliseconds: 2000),
                         () => safeSetState(() {}),
                       ),
                       autofocus: true,
@@ -94,14 +97,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 1.0,
                           ),
@@ -124,7 +127,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         filled: true,
                         fillColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
-                        prefixIcon: const Icon(
+                        prefixIcon: Icon(
                           Icons.search_sharp,
                         ),
                         suffixIcon: _model.textController!.text.isNotEmpty
@@ -133,7 +136,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   _model.textController?.clear();
                                   safeSetState(() {});
                                 },
-                                child: const Icon(
+                                child: Icon(
                                   Icons.clear,
                                   size: 22,
                                 ),
@@ -153,7 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(5.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed('IntroPage');
@@ -161,9 +164,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 text: 'Intro',
                 options: FFButtonOptions(
                   height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Merriweather',
@@ -176,7 +179,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(5.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed('AppSettings');
@@ -184,9 +187,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 text: 'Settings',
                 options: FFButtonOptions(
                   height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Merriweather',
