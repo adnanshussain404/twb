@@ -1,9 +1,6 @@
 import '/components/content_block_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'intro_page_content_pg01_model.dart';
 export 'intro_page_content_pg01_model.dart';
 
@@ -47,7 +44,7 @@ class _IntroPageContentPg01WidgetState
     return wrapWithModel(
       model: _model.contentBlockModel,
       updateCallback: () => safeSetState(() {}),
-      child: ContentBlockWidget(),
+      child: const ContentBlockWidget(),
     );
   }
 }

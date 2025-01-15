@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:ui';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'twb_text_logo_model.dart';
 export 'twb_text_logo_model.dart';
 
@@ -44,7 +40,7 @@ class _TwbTextLogoWidgetState extends State<TwbTextLogoWidget> {
     return Material(
       color: Colors.transparent,
       elevation: 5.0,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10.0),
           bottomRight: Radius.circular(10.0),
@@ -55,7 +51,7 @@ class _TwbTextLogoWidgetState extends State<TwbTextLogoWidget> {
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primary,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(10.0),
             bottomRight: Radius.circular(10.0),
             topLeft: Radius.circular(10.0),
@@ -70,13 +66,13 @@ class _TwbTextLogoWidgetState extends State<TwbTextLogoWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                 child: RichText(
                   textScaler: MediaQuery.of(context).textScaler,
                   text: TextSpan(
-                    children: [
+                    children: const [
                       TextSpan(
                         text: 'The Wise Book',
                         style: TextStyle(),
@@ -93,11 +89,11 @@ class _TwbTextLogoWidgetState extends State<TwbTextLogoWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: RichText(
                 textScaler: MediaQuery.of(context).textScaler,
                 text: TextSpan(
-                  children: [
+                  children: const [
                     TextSpan(
                       text: 'الْقُرْآنُ الْحَكِيمُ',
                       style: TextStyle(),

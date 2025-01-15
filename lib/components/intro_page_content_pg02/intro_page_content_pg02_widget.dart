@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:ui';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'intro_page_content_pg02_model.dart';
 export 'intro_page_content_pg02_model.dart';
 
@@ -57,16 +53,16 @@ class _IntroPageContentPg02WidgetState
           width: 3.0,
         ),
       ),
-      alignment: AlignmentDirectional(0.0, -1.0),
+      alignment: const AlignmentDirectional(0.0, -1.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
               child: Text(
                 'Why I made this App.',
                 style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -79,20 +75,20 @@ class _IntroPageContentPg02WidgetState
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               '7.',
@@ -108,7 +104,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -146,7 +142,7 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,7 +156,7 @@ class _IntroPageContentPg02WidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               'a.',
@@ -176,7 +172,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -214,7 +210,7 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,7 +224,7 @@ class _IntroPageContentPg02WidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               'b.',
@@ -244,7 +240,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -282,7 +278,7 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,7 +292,7 @@ class _IntroPageContentPg02WidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               'c.',
@@ -312,7 +308,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -350,13 +346,13 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               '8.',
@@ -372,7 +368,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -390,13 +386,13 @@ class _IntroPageContentPg02WidgetState
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text: '“A Message”',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text:
                                           'from Allah, and the mesenger was The Holy Prophet.',
                                       style: TextStyle(),
@@ -420,13 +416,13 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               '9.',
@@ -442,7 +438,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -460,13 +456,13 @@ class _IntroPageContentPg02WidgetState
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text: 'completely applicable even today',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text:
                                           ', as it was the day it was revealed by The Prophet Muhammad 1400 years ago.',
                                       style: TextStyle(),
@@ -490,13 +486,13 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               '10.',
@@ -512,7 +508,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -531,13 +527,13 @@ class _IntroPageContentPg02WidgetState
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text: '“Word of God (Allah)”',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text: ' himself.',
                                       style: TextStyle(),
                                     )
@@ -560,13 +556,13 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               '11.',
@@ -582,7 +578,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -608,7 +604,7 @@ class _IntroPageContentPg02WidgetState
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text:
                                           ', as it was the day it was revealed by The Prophet Muhammad 1400 years ago.',
                                       style: TextStyle(),
@@ -632,13 +628,13 @@ class _IntroPageContentPg02WidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Text(
                               '12.',
@@ -654,7 +650,7 @@ class _IntroPageContentPg02WidgetState
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
@@ -673,7 +669,7 @@ class _IntroPageContentPg02WidgetState
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text:
                                           'Then how can a book sent by him have even one verse which is not !?',
                                       style: TextStyle(

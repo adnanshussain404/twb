@@ -1,10 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'content_block2_model.dart';
 export 'content_block2_model.dart';
 
@@ -14,7 +11,7 @@ class ContentBlock2Widget extends StatefulWidget {
     super.key,
     String? mdContent,
     required this.titleText,
-  }) : this.mdContent = mdContent ?? '# No Content Set';
+  }) : mdContent = mdContent ?? '# No Content Set';
 
   final String mdContent;
   final String? titleText;
@@ -56,9 +53,9 @@ class _ContentBlock2WidgetState extends State<ContentBlock2Widget> {
             FlutterFlowTheme.of(context).primaryBackground,
             FlutterFlowTheme.of(context).secondaryText
           ],
-          stops: [0.0, 1.0],
-          begin: AlignmentDirectional(0.0, -1.0),
-          end: AlignmentDirectional(0, 1.0),
+          stops: const [0.0, 1.0],
+          begin: const AlignmentDirectional(0.0, -1.0),
+          end: const AlignmentDirectional(0, 1.0),
         ),
         borderRadius: BorderRadius.circular(12.5),
         border: Border.all(
@@ -74,12 +71,12 @@ class _ContentBlock2WidgetState extends State<ContentBlock2Widget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget!.titleText,
+                    widget.titleText,
                     'No Title Set',
                   ),
                   style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -90,14 +87,8 @@ class _ContentBlock2WidgetState extends State<ContentBlock2Widget> {
                 ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: MediaQuery.sizeOf(context).height * 1.0,
-              child: custom_widgets.AshMarkdownWidget(
-                width: double.infinity,
-                height: MediaQuery.sizeOf(context).height * 1.0,
-                content: widget!.mdContent,
-              ),
+            custom_widgets.AshMarkdownWidget(
+              content: widget.mdContent,
             ),
           ],
         ),

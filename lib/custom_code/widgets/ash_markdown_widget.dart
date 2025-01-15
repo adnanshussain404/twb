@@ -1,7 +1,6 @@
 // Automatic FlutterFlow imports
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom widgets
+// Imports other custom widgets
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -28,7 +27,7 @@ class _AshMarkdownWidgetState extends State<AshMarkdownWidget> {
         letterSpacing: 0.0,
         fontSize: 12);
 
-    return Markdown(
+    return MarkdownBody(
       data: widget.content ??
           '', // Defaulting to empty string if mdContent is null
       styleSheet: MarkdownStyleSheet(
@@ -36,12 +35,12 @@ class _AshMarkdownWidgetState extends State<AshMarkdownWidget> {
         listBullet: allTextStyle,
         p: allTextStyle,
         // Customize heading styles if needed
-        h1: TextStyle(
+        h1: const TextStyle(
           color: Colors.brown,
           fontSize: 24,
           fontFamily: 'Roboto',
         ),
-        h2: TextStyle(
+        h2: const TextStyle(
           color: Colors.black,
           fontSize: 20,
           fontFamily: 'Roboto',
