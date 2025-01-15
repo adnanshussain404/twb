@@ -1,7 +1,7 @@
 # The Wise Book
 
-A new Flutter project.
+An app that will help people understand "The Message"
 
 ## Getting Started
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+
